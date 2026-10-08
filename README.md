@@ -77,7 +77,7 @@ Foreach Loop Container  (*.csv in Source Files)
 .
 ├──SQL Queries/
 ├    ├──Create_database.sql        # Creates SSIS_Telecom_DB, fact_transaction, error_destination_output
-├     ├── Create_dim_imsi.sql        # Creates and populates dim_imsi_reference (IMSI → subscriber_id)
+├    ├── Create_dim_imsi.sql        # Creates and populates dim_imsi_reference (IMSI → subscriber_id)
 ├── Load_Data.dtsx             # The SSIS package
 ├── Source Files/              # Raw input files (*.csv)
 │   ├── 01_clean_data.csv
