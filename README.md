@@ -16,7 +16,6 @@ An end-to-end ETL project built with **SQL Server Integration Services (SSIS)**.
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Known Limitations & Future Improvements](#known-limitations--future-improvements)
-- [License](#license)
 
 ---
 
@@ -76,8 +75,9 @@ Foreach Loop Container  (*.csv in Source Files)
 
 ```
 .
-├── Create_database.sql        # Creates SSIS_Telecom_DB, fact_transaction, error_destination_output
-├── Create_dim_imsi.sql        # Creates and populates dim_imsi_reference (IMSI → subscriber_id)
+├──SQL Queries/
+├    ├──Create_database.sql        # Creates SSIS_Telecom_DB, fact_transaction, error_destination_output
+├     ├── Create_dim_imsi.sql        # Creates and populates dim_imsi_reference (IMSI → subscriber_id)
 ├── Load_Data.dtsx             # The SSIS package
 ├── Source Files/              # Raw input files (*.csv)
 │   ├── 01_clean_data.csv
