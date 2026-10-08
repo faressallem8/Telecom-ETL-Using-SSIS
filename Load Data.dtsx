@@ -1,0 +1,1560 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/6/2026 8:31:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MY-LAPTOP1"
+  DTS:CreatorName="MY-LAPTOP1\Fares"
+  DTS:DTSID="{225402B0-730C-4564-AAB9-1582E844C70E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Load Data"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{EC5E64B2-30A2-4F59-BA04-29506D39BF8F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[processed files]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{3329D517-E99A-4FC2-8A20-29C32A81DFF0}"
+      DTS:ObjectName="processed files">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="D:\Depi - Data Engineer\Technical\Warehousing\Task ssis\processed files" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Source files]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{D060D5BA-9C98-4EC1-888E-45B8A6F06ED8}"
+      DTS:ObjectName="Source files">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::full_path]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\Depi - Data Engineer\Technical\Warehousing\Task ssis\Source Files\batch_01_file_01.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="id"
+              DTS:DTSID="{7EB55FB4-AEED-454D-8291-4ED7660C2C15}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="imsi"
+              DTS:DTSID="{08F65F37-A1D0-4FB2-9BEA-6665143B2999}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="imei"
+              DTS:DTSID="{531AE343-7965-4235-ADF1-D1F8BC5AB195}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="cell"
+              DTS:DTSID="{BD04E299-C43F-4687-82B9-C4EB8F098D27}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="lac"
+              DTS:DTSID="{CF85AC10-3D21-4B99-8526-D9C22634842D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x007C_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="event_type"
+              DTS:DTSID="{A50C8F18-6105-40D2-9C1D-98C86EBB6214}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D_"
+              DTS:DataType="7"
+              DTS:TextQualified="True"
+              DTS:ObjectName="event_ts"
+              DTS:DTSID="{BBC72314-9290-4F06-B634-91A069B50F11}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Telecom_Database]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{260B2AF1-9D1A-47FD-BC95-F452C8762A06}"
+      DTS:ObjectName="Telecom_Database">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=SSIS_Telecom_DB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Load Data-{260B2AF1-9D1A-47FD-BC95-F452C8762A06}localhost\SQLEXPRESS.SSIS_Telecom_DB;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4E76AAD5-B3CA-4AB2-9C65-3E24BD1BB99F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FF_src_file_name">
+      <DTS:VariableValue
+        DTS:DataType="8">batch_01_file_01</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40FFC77C-2671-4563-8769-3D85C4565E58}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="file_extention">
+      <DTS:VariableValue
+        DTS:DataType="8">.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{60E0E50E-28A5-4978-AA53-F6480BB69317}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="folder_path">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\Depi - Data Engineer\Technical\Warehousing\Task ssis\Source Files\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3DB22919-3280-40C7-91F0-88892A0E9FE8}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::folder_path] +  @[User::FF_src_file_name] +  @[User::file_extention]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="full_path">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\Depi - Data Engineer\Technical\Warehousing\Task ssis\Source Files\batch_01_file_01.csv</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{1E4BFDDF-A2A4-485D-A113-2D73503C103B}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{1C05CCB3-1E61-4762-B1B2-E5A90E69B574}"
+        DTS:ObjectName="{1C05CCB3-1E61-4762-B1B2-E5A90E69B574}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="D:\Depi - Data Engineer\Technical\Warehousing\Task ssis\Source Files" />
+            <FEFEProperty
+              FileSpec="*.csv" />
+            <FEFEProperty
+              FileNameRetrievalType="2" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\File System Task"
+          DTS:CreationName="Microsoft.FileSystemTask"
+          DTS:Description="File System Task"
+          DTS:DTSID="{56E21909-9AA5-4B14-942C-4CD3C5A3F6F8}"
+          DTS:ExecutableType="Microsoft.FileSystemTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="File System Task"
+          DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <FileSystemData
+              TaskOverwriteDestFile="True"
+              TaskSourcePath="User::full_path"
+              TaskIsSourceVariable="True"
+              TaskDestinationPath="processed files" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Load CSV into Database"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{64028DAB-2AFD-4F9B-9D75-5C3F8395F967}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load CSV into Database"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Error Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[error_destination_output]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Telecom_Database]"
+                      connectionManagerRefId="Package.ConnectionManagers[Telecom_Database]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                          cachedDataType="i4"
+                          cachedName="id"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[id]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[imsi]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="9"
+                          cachedName="imsi"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[imsi]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imsi]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[imei]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="14"
+                          cachedName="imei"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[imei]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[cell]"
+                          cachedDataType="i4"
+                          cachedName="cell"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[cell]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[cell]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[lac]"
+                          cachedDataType="i4"
+                          cachedName="lac"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[lac]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[lac]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[event_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="event_type"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[event_type]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[event_type]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[event_ts]"
+                          cachedDataType="date"
+                          cachedName="event_ts"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[event_ts]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[event_ts]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                          cachedDataType="i4"
+                          cachedName="ErrorCode"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                          cachedDataType="i4"
+                          cachedName="ErrorColumn"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                          dataType="i4"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[imsi]"
+                          codePage="1252"
+                          dataType="str"
+                          length="9"
+                          name="imsi" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[imei]"
+                          codePage="1252"
+                          dataType="str"
+                          length="14"
+                          name="imei" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[cell]"
+                          dataType="i4"
+                          name="cell" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[lac]"
+                          dataType="i4"
+                          name="lac" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[event_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="event_type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[event_ts]"
+                          dataType="dbTimeStamp"
+                          name="event_ts" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[tac]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="tac" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[snr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="snr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                          dataType="i4"
+                          name="ErrorCode" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                          dataType="i4"
+                          name="ErrorColumn" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="FF SRC Read Transaction"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">true</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Source files]"
+                      connectionManagerRefId="Package.ConnectionManagers[Source files]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[id]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[id]"
+                          name="id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imsi]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[imsi]"
+                          length="9"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imsi]"
+                          name="imsi"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[imei]"
+                          length="14"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]"
+                          name="imei"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[cell]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[cell]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[cell]"
+                          name="cell"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[lac]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[lac]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[lac]"
+                          name="lac"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[event_type]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[event_type]"
+                          length="1"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[event_type]"
+                          name="event_type"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[event_ts]"
+                          dataType="date"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[event_ts]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[event_ts]"
+                          name="event_ts"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[id]"
+                          dataType="i4"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[imsi]"
+                          codePage="1252"
+                          dataType="str"
+                          length="9"
+                          name="imsi" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[imei]"
+                          codePage="1252"
+                          dataType="str"
+                          length="14"
+                          name="imei" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[cell]"
+                          dataType="i4"
+                          name="cell" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[lac]"
+                          dataType="i4"
+                          name="lac" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[event_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="event_type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].ExternalColumns[event_ts]"
+                          dataType="date"
+                          name="event_ts" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Load CSV into Database\get sub_id"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="get sub_id"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Inputs[Derived Column Input].Columns[subscriber_id]"
+                          cachedDataType="i4"
+                          cachedName="subscriber_id"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Match Output].Columns[subscriber_id]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">([ISNULL](#{Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Match Output].Columns[subscriber_id]})) ? -99999 : #{Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Match Output].Columns[subscriber_id]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(ISNULL(subscriber_id)) ? -99999 : subscriber_id</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Load Transactions"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[fact_transaction]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Telecom_Database]"
+                      connectionManagerRefId="Package.ConnectionManagers[Telecom_Database]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="RedirectRow"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[imsi]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="9"
+                          cachedName="imsi"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[imsi]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imsi]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[imei]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="14"
+                          cachedName="imei"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[imei]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[cell]"
+                          cachedDataType="i4"
+                          cachedName="cell"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[cell]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[cell]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[lac]"
+                          cachedDataType="i4"
+                          cachedName="lac"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[lac]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[lac]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[event_type]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="event_type"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[event_type]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[event_type]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[event_ts]"
+                          cachedDataType="date"
+                          cachedName="event_ts"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[event_ts]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[event_ts]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[id]"
+                          cachedDataType="i4"
+                          cachedName="id"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[transaction_id]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[id]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[subscriber_id]"
+                          cachedDataType="i4"
+                          cachedName="subscriber_id"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[subscriber_id]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Match Output].Columns[subscriber_id]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[TAC]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="TAC"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[tac]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Output].Columns[TAC]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].Columns[SNR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="8"
+                          cachedName="SNR"
+                          externalMetadataColumnId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[snr]"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Output].Columns[SNR]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                          dataType="i4"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[transaction_id]"
+                          dataType="i4"
+                          name="transaction_id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[imsi]"
+                          codePage="1252"
+                          dataType="str"
+                          length="9"
+                          name="imsi" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[subscriber_id]"
+                          dataType="i4"
+                          name="subscriber_id" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[tac]"
+                          codePage="1252"
+                          dataType="str"
+                          length="8"
+                          name="tac" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[snr]"
+                          codePage="1252"
+                          dataType="str"
+                          length="6"
+                          name="snr" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[imei]"
+                          codePage="1252"
+                          dataType="str"
+                          length="14"
+                          name="imei" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[cell]"
+                          dataType="i4"
+                          name="cell" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[lac]"
+                          dataType="i4"
+                          name="lac" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[event_type]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="event_type" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input].ExternalColumns[event_ts]"
+                          dataType="dbTimeStamp"
+                          name="event_ts" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup Sub_is"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[dim_imsi_reference]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[dim_imsi_reference]) [refTable]
+where [refTable].[imsi] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="imsi" dataType="DT_STR" length="9" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="subscriber_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imsi]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Telecom_Database]"
+                      connectionManagerRefId="Package.ConnectionManagers[Telecom_Database]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Inputs[Lookup Input].Columns[imsi]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="9"
+                          cachedName="imsi"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imsi]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">imsi</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Match Output].Columns[subscriber_id]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Match Output].Columns[subscriber_id]"
+                          name="subscriber_id"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">subscriber_id</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="TAC and SNR"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Inputs[Derived Column Input].Columns[imei]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="14"
+                          cachedName="imei"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Output].Columns[TAC]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Output].Columns[TAC]"
+                          name="TAC"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,8,1252)(([ISNULL](#{Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]}) || [LEN](#{Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]}) &lt; 14) ? "-99999" : [SUBSTRING](#{Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]},1,8))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,8,1252)((ISNULL(imei) || LEN(imei) &lt; 14) ? "-99999" : SUBSTRING(imei,1,8))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Output].Columns[SNR]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="8"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Output].Columns[SNR]"
+                          name="SNR"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_STR,8,1252)(([ISNULL](#{Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]}) || [LEN](#{Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]}) &lt; 14) ? "-99999" : [SUBSTRING](#{Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output].Columns[imei]},9,14))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_STR,8,1252)((ISNULL(imei) || LEN(imei) &lt; 14) ? "-99999" : SUBSTRING(imei,9,14))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Foreach Loop Container\Load CSV into Database.Paths[Derived Column Output]"
+                  endId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Inputs[Derived Column Input]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Load CSV into Database.Paths[Derived Column Output1]"
+                  endId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Load CSV into Database.Paths[Flat File Source Output]"
+                  endId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Inputs[Lookup Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction.Outputs[Flat File Source Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Load CSV into Database.Paths[Lookup Match Output]"
+                  endId="Package\Foreach Loop Container\Load CSV into Database\get sub_id.Inputs[Derived Column Input]"
+                  name="Lookup Match Output"
+                  startId="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Foreach Loop Container\Load CSV into Database.Paths[OLE DB Destination Error Output]"
+                  endId="Package\Foreach Loop Container\Load CSV into Database\Error Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Destination Error Output"
+                  startId="Package\Foreach Loop Container\Load CSV into Database\Load Transactions.Outputs[OLE DB Destination Error Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{A1664E09-3680-445A-B58F-57B45DDFE232}"
+          DTS:ObjectName="{A1664E09-3680-445A-B58F-57B45DDFE232}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FF_src_file_name" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="192.8,42.4"
+          Id="Package\Foreach Loop Container\Load CSV into Database"
+          TopLeft="4.83332673129149,9.99999887903536" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\Foreach Loop Container\File System Task"
+          TopLeft="13.4333193552169,75.3999988247951" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="204.8,55.2"
+          Size="204.8,160"
+          Id="Package\Foreach Loop Container"
+          TopLeft="242.499986750385,50.2666663171186" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Foreach Loop Container\Load CSV into Database">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="144,41.6"
+          Id="Package\Foreach Loop Container\Load CSV into Database\TAC and SNR"
+          TopLeft="304.166650047733,228.583331743793" />
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\Foreach Loop Container\Load CSV into Database\get sub_id"
+          TopLeft="119.291660804509,191.749998666594" />
+        <NodeLayout
+          Size="200.8,41.6"
+          Id="Package\Foreach Loop Container\Load CSV into Database\FF SRC Read Transaction"
+          TopLeft="21.8749988048028,24.1738093557079" />
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is"
+          TopLeft="55.3916683171771,90.049999507318" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Foreach Loop Container\Load CSV into Database\Error Destination"
+          TopLeft="109.672613055372,372.357140267818" />
+        <NodeLayout
+          Size="164,41.6"
+          Id="Package\Foreach Loop Container\Load CSV into Database\Load Transactions"
+          TopLeft="111.904755790556,300.392855053963" />
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Load CSV into Database.Paths[OLE DB Destination Error Output]"
+          TopLeft="190.988684422964,341.992855053963">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.364285213855"
+              Start="0,0"
+              End="0,22.864285213855">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.864285213855" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-73.20890625,5.7153457319275,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Load CSV into Database.Paths[Lookup Match Output]"
+          TopLeft="128.991668317177,131.649999507318">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="53.4999924873317,60.0999991592763"
+              Start="0,0"
+              End="53.4999924873317,52.5999991592763">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.0499995796381" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.0499995796381"
+                    Point2="0,30.0499995796381"
+                    Point3="4,30.0499995796381" />
+                  <mssgle:LineSegment
+                    End="49.4999924873317,30.0499995796381" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49.4999924873317,30.0499995796381"
+                    Point2="53.4999924873317,30.0499995796381"
+                    Point3="53.4999924873317,34.0499995796381" />
+                  <mssgle:LineSegment
+                    End="53.4999924873317,52.5999991592763" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-21.4413904750842,35.0499995796381,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Load CSV into Database.Paths[Flat File Source Output]"
+          TopLeft="125.63333356099,65.7738093557079">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.2761901516101"
+              Start="0,0"
+              End="0,16.7761901516101">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7761901516101" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Load CSV into Database.Paths[Derived Column Output1]"
+          TopLeft="376.166650047733,270.183331743793">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-182.261894257177,30.20952331017"
+              Start="0,0"
+              End="-182.261894257177,22.70952331017">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.104761655085" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.104761655085"
+                    Point2="0,15.104761655085"
+                    Point3="-4,15.104761655085" />
+                  <mssgle:LineSegment
+                    End="-178.261894257177,15.104761655085" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-178.261894257177,15.104761655085"
+                    Point2="-182.261894257177,15.104761655085"
+                    Point3="-182.261894257177,19.104761655085" />
+                  <mssgle:LineSegment
+                    End="-182.261894257177,22.70952331017" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container\Load CSV into Database.Paths[Derived Column Output]"
+          TopLeft="245.691660804509,212.549998666594">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="58.4749892432246,36.8333330771991"
+              Start="0,0"
+              End="50.9749892432246,36.8333330771991">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.2374946216123,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.2374946216123,0"
+                    Point2="29.2374946216123,0"
+                    Point3="29.2374946216123,4" />
+                  <mssgle:LineSegment
+                    End="29.2374946216123,32.8333330771991" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.2374946216123,32.8333330771991"
+                    Point2="29.2374946216123,36.8333330771991"
+                    Point3="33.2374946216123,36.8333330771991" />
+                  <mssgle:LineSegment
+                    End="50.9749892432246,36.8333330771991" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Load CSV into Database\Lookup Sub_is">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[dim_imsi_reference]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Load CSV into Database\Error Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Foreach Loop Container\Load CSV into Database\Load Transactions">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
