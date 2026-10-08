@@ -2,8 +2,6 @@
 
 An end-to-end ETL project built with **SQL Server Integration Services (SSIS)**. A single package loops over raw telecom event files (pipe-delimited CSVs), enriches each record with a subscriber ID from a reference dimension, derives the device's TAC and SNR from the IMEI, and loads the result into a **SQL Server** data warehouse. Rows that fail to load are redirected to an error table instead of being lost.
 
-> The same pipeline is also implemented in Python (pandas + pyodbc). <!-- TODO: link to the Python repo/README -->
-
 ---
 
 ## Table of Contents
@@ -62,7 +60,8 @@ Foreach Loop Container  (*.csv in Source Files)
       Error Destination            (OLE DB Destination → error_destination_output)
 ```
 
-<!-- TODO: add a screenshot of your Control Flow and Data Flow, e.g. ![Data Flow](docs/data_flow.png) -->
+   ![Control Flow](docs/control_flow.png)
+   ![Data Flow](docs/data_flow.png)
 
 ## Tech Stack
 
@@ -216,16 +215,10 @@ SELECT COUNT(*) FROM fact_transaction WHERE subscriber_id = -99999;
 
 ## Known Limitations & Future Improvements
 
-- **Test files are loaded too**: the loop picks up every `*.csv`, including the three test files (`01`–`03`). Use a narrower file spec such as `batch_*.csv` or move the test files out of the folder.
-- **Re-running duplicates data**: nothing prevents the same file from loading twice. Consider a staging table, a unique constraint, or moving (rather than copying) files after a successful load.
-- **Overlapping IDs**: some batch files reuse `id` ranges (for example `batch_02_file_03` and `batch_02_file_04`). Consider deduplication or a composite key.
 - **Validation is destination-driven**: rows are rejected only when the insert fails. Adding a Conditional Split for explicit rules (valid event types, non-numeric IDs) would make rejections more precise.
 - **Hard-coded paths**: move folder and server settings into project parameters.
 - **Planned**: logging, SQL Agent scheduling, and an SSIS Catalog deployment.
 
-## License
-
-Add a license of your choice (e.g. MIT) and update this section.
 
 ---
 
